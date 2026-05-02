@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Together, Daily — Kyle &amp; Jyselle</title>
+  <meta name="description" content="A systems-over-goals habit dashboard for Kyle and Jyselle on the way to their wedding in Andalusia, September 22, 2027." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#2d4a2b" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Together, Daily" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Hide panels until JS finishes initial render (no 0-day-streak flash) -->
+  <style>
+    html.loading .panel { visibility: hidden; }
+  </style>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="eyebrow">A System for Two · Est. May 2026</div>
+    <h1>Together, <em>Daily.</em></h1>
+    <p class="subtitle">Two people, one rhythm. The wedding is a milestone the system passes through — not the thing it serves. We show up for each other. Every day.</p>
+  </header>
+
+  <!-- GOALS — what we're working toward -->
+  <section class="goals-block" aria-label="Goals">
+    <div class="goals-grid">
+      <div class="goal-item">
+        <div class="goal-label">The day</div>
+        <div class="goal-value">September 22, <em>2027</em></div>
+        <div class="goal-meta">Wedding · Andalusia, Spain</div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-label">Time we have</div>
+        <div class="goal-value" id="runwayWeeks">~73 weeks</div>
+        <div class="goal-meta" id="runwayDays">~509 days</div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-label">The floor</div>
+        <div class="goal-value">10-min <em>walk</em></div>
+        <div class="goal-meta">every day · non-negotiable</div>
+      </div>
+      <div class="goal-item">
+        <div class="goal-label">Built for</div>
+        <div class="goal-value">Kyle &amp; <em>Jyselle</em></div>
+        <div class="goal-meta">two dashboards · one system</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE WHY — read this when motivation runs out -->
+  <section class="why-block" aria-label="The why">
+    <div class="why-eyebrow">The why · read this on hard days</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-name">Kyle's <em>why</em></div>
+        <p class="why-quote">"I want to look good and be good — so when I show up to clients, when I show up at work, when I walk into a room, people treat me differently. I want to show everyone I'm not playing games. And most of all, I want to feel good in my own body."</p>
+        <div class="why-anchors">
+          <span class="why-anchor">Treated differently when I show up</span>
+          <span class="why-anchor">Not playing games</span>
+          <span class="why-anchor">Feel good in my own body</span>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-name">Jyselle's <em>why</em></div>
+        <p class="why-quote" id="jyselleWhy">"I want to work out to look good on our wedding day in Spain by September 22, 2027. I want to feel confident and beautiful when I look at myself and when I slip on my wedding dress. I want to feel like I love my body again. Something I want to work towards not only for looks but to make sure that my health is my priority."</p>
+        <div class="why-anchors" id="jyselleAnchors">
+          <span class="why-anchor">Confident &amp; beautiful in my dress</span>
+          <span class="why-anchor">Love my body again</span>
+          <span class="why-anchor">Health is my priority</span>
+        </div>
+        <button type="button" class="why-edit-btn" id="editJyselleWhyBtn">Edit Jyselle's why</button>
+      </div>
+    </div>
+    <div class="why-footer">
+      The <em>why</em> is the engine. The <strong>system</strong> is the vehicle. On days the engine is quiet, the system still drives.
+    </div>
+  </section>
+
+  <main>
+    <div class="tabs" role="tablist" aria-label="Dashboards">
+      <button class="tab active" role="tab" id="tab-kyle"    data-tab="kyle"    aria-controls="panel-kyle"    aria-selected="true"  tabindex="0"><span class="name-tag">Kyle's</span> dashboard</button>
+      <button class="tab"        role="tab" id="tab-jyselle" data-tab="jyselle" aria-controls="panel-jyselle" aria-selected="false" tabindex="-1"><span class="name-tag">Jyselle's</span> dashboard</button>
+      <button class="tab"        role="tab" id="tab-system"  data-tab="system"  aria-controls="panel-system"  aria-selected="false" tabindex="-1">The system</button>
+      <button class="tab"        role="tab" id="tab-data"    data-tab="data"    aria-controls="panel-data"    aria-selected="false" tabindex="-1">Data</button>
+    </div>
+
+    <section class="panel active" id="panel-kyle"    role="tabpanel" aria-labelledby="tab-kyle"></section>
+    <section class="panel"        id="panel-jyselle" role="tabpanel" aria-labelledby="tab-jyselle"></section>
+
+    <section class="panel" id="panel-system" role="tabpanel" aria-labelledby="tab-system">
+      <div class="principles">
+        <div class="principles-title">The seven principles this system rests on</div>
+        <div class="principle-list">
+          <div class="principle"><strong>01 · Systems over goals</strong>You don't try to lose 30 lbs. You become someone who moves daily. The body shape is a side effect.</div>
+          <div class="principle"><strong>02 · The 10-minute floor</strong>Every day, no matter what — a 10-minute walk. The thing you cannot fail at.</div>
+          <div class="principle"><strong>03 · Two-minute starts</strong>Big resistance? Just put on shoes and step outside. Starting is the hard part.</div>
+          <div class="principle"><strong>04 · Habit stacking</strong>Anchor movement to existing cues: morning coffee, work breaks, post-dinner.</div>
+          <div class="principle"><strong>05 · Identity, not outcome</strong>"I'm someone who walks daily and lifts twice a week." Each check is a vote.</div>
+          <div class="principle"><strong>06 · Never miss twice</strong>Missing once is life. Missing twice is the start of quitting.</div>
+          <div class="principle"><strong>07 · Phase before progress</strong>First 6 weeks: install. Don't optimize. Then progress.</div>
+        </div>
+      </div>
+
+      <div class="weekly-plan">
+        <h3>Phase 1 · Weeks 1–6 · <em>Habit Installation</em></h3>
+        <p class="weekly-plan-sub">Goal of this phase: not weight loss. Not strength. Just become people who do this. The body responds when the system is real.</p>
+        <div class="day-row"><div class="day-name">Mon<span>strength</span></div><div class="day-plan"><span class="walk-tag">walk</span> 10am · 3pm · post-dinner<br><span class="strength-tag">strength</span> 20-min full-body session at apartment gym</div></div>
+        <div class="day-row"><div class="day-name">Tue<span>walk only</span></div><div class="day-plan"><span class="walk-tag">walk</span> Same rhythm. Rest is rest.</div></div>
+        <div class="day-row"><div class="day-name">Wed<span>walk only</span></div><div class="day-plan"><span class="walk-tag">walk</span> Don't add. Don't optimize.</div></div>
+        <div class="day-row"><div class="day-name">Thu<span>strength</span></div><div class="day-plan"><span class="walk-tag">walk</span> 10am · 3pm · post-dinner<br><span class="strength-tag">strength</span> 20-min full-body session at apartment gym</div></div>
+        <div class="day-row"><div class="day-name">Fri<span>walk only</span></div><div class="day-plan"><span class="walk-tag">walk</span> Walks only. Save the energy for the weekend.</div></div>
+        <div class="day-row"><div class="day-name">Sat<span>long walk</span></div><div class="day-plan"><span class="walk-tag">walk</span> One longer walk together — 30+ min. Errands, beach, anything that doesn't feel like exercise.</div></div>
+        <div class="day-row"><div class="day-name">Sun<span>review</span></div><div class="day-plan"><span class="walk-tag">walk</span> 10-min minimum. Sunday review (in your dashboard). No judgment, just observation.</div></div>
+      </div>
+
+      <div class="weekly-plan">
+        <h3>Kyle's strength sessions <em>(twice a week)</em></h3>
+        <p class="weekly-plan-sub">Full-body, ~20 minutes, designed around Kyle's right knee + right shoulder. Dumbbells in the apartment gym.</p>
+
+        <div class="session-block">
+          <h4>Mon · <em>Push focus</em></h4>
+          <p class="session-warmup">Warm-up: 2 min walk in place + 10 arm circles each direction</p>
+          <ul>
+            <li><strong>Goblet squat to chair</strong> · 2 sets × 10 reps · light dumbbell, sit to chair, stand. No deep squat.</li>
+            <li><strong>Incline push-up (hands on bench)</strong> · 2 sets × 8 reps · easier on shoulder than floor.</li>
+            <li><strong>Romanian deadlift</strong> · 2 sets × 10 reps · light dumbbells, hinge at hips, soft knees.</li>
+            <li><strong>Glute bridge</strong> · 2 sets × 12 reps · feet flat, drive through heels.</li>
+            <li><strong>Dead bug</strong> · 2 sets × 8 reps each side · core, knee-friendly.</li>
+          </ul>
+        </div>
+
+        <div class="session-block">
+          <h4>Thu · <em>Pull focus</em></h4>
+          <p class="session-warmup">Warm-up: 2 min walk in place + 10 cat-cows + 10 hip circles each side</p>
+          <ul>
+            <li><strong>One-arm dumbbell row</strong> · 2 sets × 10 reps each side · braced on bench. Strong back protects shoulder.</li>
+            <li><strong>Step-up (low step, no jump)</strong> · 2 sets × 8 reps each leg · controlled, no impact. Sub split squat if knee bothers.</li>
+            <li><strong>Suitcase carry</strong> · 2 sets × 30 sec each side · walk holding one heavy dumbbell. Anti-rotation core.</li>
+            <li><strong>Hip thrust (shoulders on bench)</strong> · 2 sets × 10 reps · glutes, knee-friendly.</li>
+            <li><strong>Bird dog</strong> · 2 sets × 8 reps each side · spinal stability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="weekly-plan">
+        <h3>Jyselle's gentle strength sessions <em>(twice a week)</em></h3>
+        <p class="weekly-plan-sub">Beginner-friendly, mostly bodyweight, ~10–15 minutes. No equipment needed at first. Goal isn't intensity — it's <em>showing up</em>. Once it feels easy after a few weeks, we can add a band or light weights.</p>
+
+        <div class="session-block">
+          <h4>Mon · <em>Gentle full-body</em></h4>
+          <p class="session-warmup">Warm-up: 2 min slow walk in place + 5 shoulder rolls + 5 gentle squats (no weight)</p>
+          <ul>
+            <li><strong>Chair squat</strong> · 2 sets × 8 reps · stand up from chair, sit down. No weight needed. <em>Builds: legs and glutes.</em></li>
+            <li><strong>Wall push-up</strong> · 2 sets × 8 reps · stand arm's length from wall, push in and out. <em>Builds: chest and arms gently.</em></li>
+            <li><strong>Glute bridge</strong> · 2 sets × 10 reps · lay on back, lift hips. <em>Wakes up your butt — most important muscle for posture.</em></li>
+            <li><strong>Standing band row (or air row)</strong> · 2 sets × 10 reps · pull elbows back, squeeze shoulder blades. <em>Builds: back.</em></li>
+            <li><strong>Seated march</strong> · 2 sets × 10 reps each leg · sit tall, lift one knee at a time. <em>Easy core work.</em></li>
+          </ul>
+        </div>
+
+        <div class="session-block">
+          <h4>Thu · <em>Gentle full-body (different angles)</em></h4>
+          <p class="session-warmup">Warm-up: 2 min slow walk in place + 5 cat-cows + 5 hip circles each side</p>
+          <ul>
+            <li><strong>Sit-to-stand</strong> · 2 sets × 8 reps · same as chair squat but slower on the way down. <em>Strengthens differently.</em></li>
+            <li><strong>Counter push-up</strong> · 2 sets × 8 reps · push-up against kitchen counter. <em>Slightly harder than wall push-up.</em></li>
+            <li><strong>Side steps</strong> · 2 sets × 10 each side · small steps side to side. <em>Outer hips and balance.</em></li>
+            <li><strong>Hip hinge (no weight)</strong> · 2 sets × 8 reps · push hips back, hands on thighs. <em>Teaches you to bend safely from the hips.</em></li>
+            <li><strong>Standing balance</strong> · 2 sets × 20 sec each foot · stand on one leg near a wall. <em>Surprisingly tiring — builds ankle and core.</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="weekly-plan">
+        <h3>Jyselle's optional walk-jog method <em>(when she feels like it)</em></h3>
+        <p class="weekly-plan-sub">She's open to running but new to it. The safest, most sustainable way to start: <em>walk-jog intervals</em>. Never starts as "running" — starts as walking with tiny jog breaks.</p>
+
+        <div class="method-block">
+          <strong class="method-heading">The first 4 weeks</strong>
+          Walk 2 minutes, jog 30 seconds, walk 2 minutes, jog 30 seconds. Total: 15–20 minutes. Twice a week max — never on strength days.
+
+          <strong class="method-heading">Weeks 5–8</strong>
+          Walk 2 minutes, jog 1 minute. Same total time. Only if the first 4 weeks felt easy.
+
+          <strong class="method-heading">The rule</strong>
+          If a session leaves her sore for more than a day, scale back. Soreness is not a badge — it's a signal we went too hard. The goal is to feel slightly better than when she started, not exhausted.
+
+          <strong class="method-heading">When to skip it entirely</strong>
+          Walk-jog is a <em>bonus</em> — not part of the floor. If she's tired, stressed, or sore, she just walks. The 10-minute walk is the only thing that matters for the streak.
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-data" role="tabpanel" aria-labelledby="tab-data">
+      <div class="data-panel">
+        <h3>Your data, <em>portable</em></h3>
+        <p>This is the export hatch. Your check-ins, streaks, and reviews are saved in your browser automatically. But systems evolve — when you eventually outgrow this dashboard, take everything with you in a single file.</p>
+
+        <div class="backup-nudge" id="backupNudge"></div>
+
+        <div class="data-actions">
+          <button type="button" class="data-btn" id="exportBtn">Download backup (.json)</button>
+          <button type="button" class="data-btn secondary" id="importBtn">Import backup</button>
+          <input type="file" id="importFile" accept=".json" />
+          <button type="button" class="data-btn danger" id="resetBtn">Reset all data</button>
+        </div>
+        <div class="data-status" id="dataStatus" role="status" aria-live="polite"></div>
+
+        <div class="data-storage-info">
+          <strong>How storage works on this dashboard.</strong> Your data lives in your browser's localStorage on this specific device. Kyle's phone, Jyselle's phone, your laptop — each has its own independent record. Nothing is sent to any server. Nothing is shared between devices. This is intentional: it keeps the system private, fast, and free to host on GitHub Pages.
+          <br><br>
+          <strong>The portability principle.</strong> Export your backup to your iCloud or Notion Memory Library every Sunday during your review. If you ever switch phones, change browsers, or migrate to a different system — strength training app, Notion database, custom build — you have a clean JSON file with every check-in and reflection you've ever logged. Data outlives any one tool.
+          <br><br>
+          <strong>Migration tip for future-you.</strong> The JSON file is human-readable. If you eventually want this data in Notion, the conversion is straightforward. If you want to share Kyle's progress with a coach or doctor, you can export, edit out anything personal in the reviews, and send. Your data, your decisions.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-action">
+    <div class="footer-quote">"Goal-oriented people exist in a state of continuous pre-success failure. Systems people succeed every time they apply their system." — Scott Adams</div>
+    <div class="save-status" id="saveStatus" role="status" aria-live="polite">All changes saved</div>
+  </div>
+</div>
+
+<!-- Modal: edit Jyselle's why -->
+<div class="modal-backdrop" id="whyModal" role="dialog" aria-modal="true" aria-labelledby="whyModalTitle">
+  <div class="modal">
+    <h2 id="whyModalTitle">Jyselle's <em>why</em></h2>
+    <p class="modal-sub">In her own words. Some things to think about: how do you want to feel walking down the aisle? Dancing at the reception? Looking at the wedding photos in 10 years? Exploring Andalusia with Kyle?</p>
+
+    <label for="whyModalText">The why</label>
+    <textarea id="whyModalText" rows="6"></textarea>
+    <div class="modal-help">One or two sentences is plenty. Skip the questions you don't want to answer.</div>
+
+    <label for="whyModalAnchors">Three short anchor phrases</label>
+    <textarea id="whyModalAnchors" rows="2"></textarea>
+    <div class="modal-help">Comma-separated. The feelings or images you want to come back to. Examples: "Confident in my dress, Strong on the dance floor, Energy to enjoy Spain"</div>
+
+    <div class="modal-actions">
+      <button type="button" class="data-btn secondary" id="whyModalCancel">Cancel</button>
+      <button type="button" class="data-btn" id="whyModalSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Welcome overlay: first-run only -->
+<div class="welcome-backdrop" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+  <div class="welcome-card">
+    <div class="welcome-eyebrow">Welcome</div>
+    <h2 id="welcomeTitle">A system for <em>two</em>.</h2>
+    <p>This is a quiet, local-only habit dashboard. No accounts, no tracking, no cloud — just your check-ins, in your browser, on this device.</p>
+    <p>How it works:</p>
+    <ul>
+      <li><em>The floor</em> is a 10-minute walk every day. That's it. Everything else is bonus.</li>
+      <li>Check items off as you do them. The week strip lights up as you hold the floor.</li>
+      <li>Sundays, write a few sentences in the review. No judgment — just data.</li>
+      <li>Export a backup whenever you like. The Data tab will remind you every 30 days.</li>
+    </ul>
+    <p>If you ever need to start over, the Data tab has a reset button. Your data, your decisions.</p>
+    <div class="modal-actions">
+      <button type="button" class="data-btn" id="welcomeDismiss">Begin</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/render.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

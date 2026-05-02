@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Together Daily app icon">
+  <defs>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c8956d"/>
+      <stop offset="100%" stop-color="#2d4a2b"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square: warm cream background -->
+  <rect x="0" y="0" width="512" height="512" rx="92" ry="92" fill="#f4f1ea"/>
+  <!-- Inset deep-forest panel -->
+  <rect x="40" y="40" width="432" height="432" rx="64" ry="64" fill="#2d4a2b"/>
+  <!-- Left accent bar (warm → forest) — matches the goals-block design -->
+  <rect x="40" y="40" width="14" height="432" rx="7" ry="7" fill="url(#bar)"/>
+  <!-- Two circles: "two people, one rhythm" -->
+  <circle cx="216" cy="256" r="56" fill="#c8956d"/>
+  <circle cx="312" cy="256" r="56" fill="#f4f1ea"/>
+  <!-- Floor line: the 10-minute walk underline -->
+  <rect x="176" y="356" width="176" height="6" rx="3" ry="3" fill="#c8956d" opacity="0.85"/>
+</svg>
