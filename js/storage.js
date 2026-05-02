@@ -99,7 +99,6 @@ function importData(event) {
       if (!STATE.review.kyle) STATE.review.kyle = {};
       if (!STATE.review.jyselle) STATE.review.jyselle = {};
       saveState();
-      renderJyselleWhy();
       renderPanel('kyle');
       renderPanel('jyselle');
       renderBackupNudge();
@@ -116,7 +115,6 @@ function resetAll() {
   if (!confirm('Reset all check-ins and reviews for both Kyle and Jyselle? This cannot be undone — consider exporting first.')) return;
   STATE = emptyState();
   saveState();
-  renderJyselleWhy();
   renderPanel('kyle');
   renderPanel('jyselle');
   renderBackupNudge();

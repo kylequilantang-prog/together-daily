@@ -3,6 +3,13 @@
 const STORAGE_KEY = 'kyle_jyselle_system_v1';
 const WEDDING_DATE = new Date(2027, 8, 22); // September 22, 2027 — Andalusia, Spain
 
+const KYLE_WHY = "I want to look good and be good — so when I show up to clients, when I show up at work, when I walk into a room, people treat me differently. I want to show everyone I'm not playing games. And most of all, I want to feel good in my own body.";
+const KYLE_ANCHORS = [
+  "Treated differently when I show up",
+  "Not playing games",
+  "Feel good in my own body"
+];
+
 const ITEMS = {
   kyle: [
     { id: 'walk_morning', label: 'Morning walk', cue: 'after coffee · 5–10 min', floor: false, type: 'walk' },

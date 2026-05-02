@@ -272,17 +272,6 @@ h1 em { font-style: italic; color: var(--accent); }
   margin-bottom: 32px;
   position: relative;
 }
-.principles::before {
-  content: '"';
-  position: absolute;
-  top: -10px; left: 24px;
-  font-family: 'Fraunces', serif;
-  font-size: 80px;
-  color: var(--accent);
-  line-height: 1;
-  background: var(--bg);
-  padding: 0 8px;
-}
 .principles-title {
   font-size: 11px;
   letter-spacing: 0.18em;

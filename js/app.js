@@ -73,6 +73,8 @@ function bindDelegatedHandlers() {
       toggleItem(el.dataset.person, el.dataset.id);
     } else if (action === 'toggle-exercise') {
       toggleExercise(el.dataset.person, el.dataset.id);
+    } else if (action === 'edit-jyselle-why') {
+      openWhyModal();
     }
   });
 
@@ -120,12 +122,11 @@ function saveWhyModal() {
     .filter(Boolean)
     .slice(0, 4);
   saveState();
-  renderJyselleWhy();
+  renderPanel('jyselle');
   closeWhyModal();
 }
 
 function bindWhyModal() {
-  document.getElementById('editJyselleWhyBtn').addEventListener('click', openWhyModal);
   document.getElementById('whyModalCancel').addEventListener('click', closeWhyModal);
   document.getElementById('whyModalSave').addEventListener('click', saveWhyModal);
   // Click backdrop to dismiss
@@ -165,7 +166,6 @@ function bindWelcome() {
 function init() {
   loadState();
   setRunway();
-  renderJyselleWhy();
   renderPanel('kyle');
   renderPanel('jyselle');
   renderBackupNudge();

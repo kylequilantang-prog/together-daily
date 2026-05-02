@@ -63,6 +63,48 @@ function escapeHTML(str) {
     .replace(/'/g, '&#39;');
 }
 
+/* === RENDER: WHY BLOCK (per dashboard) === */
+function whyBlockHTML(person) {
+  let cardName, quote, anchors, editButton, isEmpty;
+  if (person === 'kyle') {
+    cardName = `Kyle's <em>why</em>`;
+    quote = KYLE_WHY;
+    anchors = KYLE_ANCHORS;
+    editButton = '';
+    isEmpty = false;
+  } else {
+    cardName = `Jyselle's <em>why</em>`;
+    quote = (STATE.jyselleWhy || '').trim();
+    anchors = STATE.jyselleAnchors || [];
+    editButton = `<button type="button" class="why-edit-btn" data-action="edit-jyselle-why">Edit Jyselle's why</button>`;
+    isEmpty = !quote;
+  }
+
+  const quoteHTML = isEmpty
+    ? `<p class="why-quote why-quote-empty">[Tap "Edit Jyselle's why" below to write it in her own words]</p>`
+    : `<p class="why-quote">"${escapeHTML(quote)}"</p>`;
+
+  const anchorsHTML = anchors
+    .filter(a => a && a.trim())
+    .map(a => `<span class="why-anchor">${escapeHTML(a.trim())}</span>`)
+    .join('');
+
+  return `
+    <section class="why-block" aria-label="The why">
+      <div class="why-eyebrow">The why · read this on hard days</div>
+      <div class="why-card">
+        <div class="why-card-name">${cardName}</div>
+        ${quoteHTML}
+        <div class="why-anchors">${anchorsHTML}</div>
+        ${editButton}
+      </div>
+      <div class="why-footer">
+        The <em>why</em> is the engine. The <strong>system</strong> is the vehicle. On days the engine is quiet, the system still drives.
+      </div>
+    </section>
+  `;
+}
+
 /* === RENDER: TODAY + WEEK + REVIEW PANEL === */
 function renderPanel(person) {
   const panel = document.getElementById('panel-' + person);
@@ -150,6 +192,7 @@ function renderPanel(person) {
   const reviewState = (STATE.review[person] && STATE.review[person][wk]) || {};
 
   panel.innerHTML = `
+    ${whyBlockHTML(person)}
     ${PRINCIPLES_HTML}
     ${warningHTML}
     <div class="today-card">
@@ -196,31 +239,6 @@ function renderPanel(person) {
       </div>
     </div>
   `;
-}
-
-/* === RENDER: WHY BLOCK === */
-function renderJyselleWhy() {
-  const quoteEl = document.getElementById('jyselleWhy');
-  const anchorsEl = document.getElementById('jyselleAnchors');
-  if (!quoteEl) return;
-  if (STATE.jyselleWhy && STATE.jyselleWhy.trim()) {
-    quoteEl.textContent = '"' + STATE.jyselleWhy.trim() + '"';
-    quoteEl.classList.remove('why-quote-empty');
-  } else {
-    quoteEl.textContent = '[Tap "Edit Jyselle\'s why" below to write it in her own words]';
-    quoteEl.classList.add('why-quote-empty');
-  }
-  if (anchorsEl) {
-    anchorsEl.innerHTML = '';
-    (STATE.jyselleAnchors || []).forEach(a => {
-      if (a && a.trim()) {
-        const span = document.createElement('span');
-        span.className = 'why-anchor';
-        span.textContent = a.trim();
-        anchorsEl.appendChild(span);
-      }
-    });
-  }
 }
 
 /* === RENDER: RUNWAY (weeks/days to wedding) === */
