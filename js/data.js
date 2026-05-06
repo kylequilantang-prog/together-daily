@@ -33,25 +33,25 @@ const STRENGTH_SESSIONS = {
   // Kyle — knee + shoulder safe, dumbbell-based
   kyle: {
     1: {
-      name: 'Push focus',
-      warmup: '2 min walk in place + 10 arm circles each direction',
+      name: 'Full-body',
+      warmup: '2 min walk in place + 10 arm circles each direction + 5 cat-cows',
       exercises: [
         { id: 'goblet_squat',   name: 'Goblet squat to chair',            detail: '2 sets × 10 reps · light dumbbell, sit to chair, stand. No deep squat.' },
         { id: 'incline_pushup', name: 'Incline push-up (hands on bench)', detail: '2 sets × 8 reps · easier on shoulder than floor.' },
+        { id: 'db_row',         name: 'One-arm dumbbell row',             detail: '2 sets × 10 reps each side · braced on bench. Strong back protects shoulder.' },
         { id: 'rdl',            name: 'Romanian deadlift',                detail: '2 sets × 10 reps · light dumbbells, hinge at hips, soft knees.' },
-        { id: 'glute_bridge',   name: 'Glute bridge',                     detail: '2 sets × 12 reps · feet flat, drive through heels.' },
         { id: 'deadbug',        name: 'Dead bug',                         detail: '2 sets × 8 reps each side · core, knee-friendly.' }
       ]
     },
     4: {
-      name: 'Pull focus',
-      warmup: '2 min walk in place + 10 cat-cows + 10 hip circles each side',
+      name: 'Full-body',
+      warmup: '2 min walk in place + 10 hip circles each side + 10 shoulder rolls',
       exercises: [
-        { id: 'db_row',     name: 'One-arm dumbbell row',           detail: '2 sets × 10 reps each side · braced on bench. Strong back protects shoulder.' },
-        { id: 'step_up',    name: 'Step-up (low step, no jump)',    detail: '2 sets × 8 reps each leg · controlled, no impact. Sub split squat if knee bothers.' },
-        { id: 'suitcase',   name: 'Suitcase carry',                 detail: '2 sets × 30 sec each side · walk holding one heavy dumbbell. Anti-rotation core.' },
-        { id: 'hip_thrust', name: 'Hip thrust (shoulders on bench)', detail: '2 sets × 10 reps · glutes, knee-friendly.' },
-        { id: 'bird_dog',   name: 'Bird dog',                        detail: '2 sets × 8 reps each side · spinal stability.' }
+        { id: 'step_up',     name: 'Step-up (low step, no jump)',  detail: '2 sets × 8 reps each leg · controlled, no impact. Sub split squat if knee bothers.' },
+        { id: 'floor_press', name: 'Floor press (lying on back)',   detail: '2 sets × 10 reps · light dumbbells, elbows stop on the floor — shoulder-safe push.' },
+        { id: 'bent_row',    name: 'Bent-over dumbbell row',        detail: '2 sets × 10 reps · hinged at hips, soft knees, both dumbbells pulled to ribs.' },
+        { id: 'hip_thrust',  name: 'Hip thrust (shoulders on bench)', detail: '2 sets × 10 reps · glutes, knee-friendly.' },
+        { id: 'bird_dog',    name: 'Bird dog',                       detail: '2 sets × 8 reps each side · spinal stability.' }
       ]
     }
   },
