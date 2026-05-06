@@ -10,21 +10,22 @@ const KYLE_ANCHORS = [
   "Feel good in my own body"
 ];
 
+// Floor logic: any item with type 'walk' or 'walk_jog' satisfies the 10-min floor.
 const ITEMS = {
   kyle: [
-    { id: 'walk_morning', label: 'Morning walk', cue: 'after coffee · 5–10 min', floor: false, type: 'walk' },
-    { id: 'walk_10am',    label: '10 AM break walk', cue: 'work break · 10 min', floor: true,  type: 'walk' },
-    { id: 'walk_3pm',     label: '3 PM break walk', cue: 'work break · 10 min', floor: false, type: 'walk' },
-    { id: 'walk_dinner',  label: 'Post-dinner walk with Jyselle', cue: 'talking walk', floor: false, type: 'walk' },
-    { id: 'strength',     label: 'Strength session complete', cue: 'all 5 exercises checked below', floor: false, type: 'strength' }
+    { id: 'walk_morning', label: 'Morning walk', cue: 'after coffee · 5–10 min', type: 'walk' },
+    { id: 'walk_10am',    label: '10 AM break walk', cue: 'work break · 10 min', type: 'walk' },
+    { id: 'walk_3pm',     label: '3 PM break walk', cue: 'work break · 10 min', type: 'walk' },
+    { id: 'walk_dinner',  label: 'Post-dinner walk with Jyselle', cue: 'talking walk', type: 'walk' },
+    { id: 'strength',     label: 'Strength session complete', cue: 'all 5 exercises checked below', type: 'strength' }
   ],
   jyselle: [
-    { id: 'walk_morning',  label: 'Morning movement', cue: 'after coffee · gentle 5–10 min walk', floor: false, type: 'walk' },
-    { id: 'walk_10am',     label: '10 AM break walk', cue: 'work break · just 10 min', floor: true,  type: 'walk' },
-    { id: 'walk_3pm',      label: '3 PM break walk', cue: 'work break · just 10 min', floor: false, type: 'walk' },
-    { id: 'walk_dinner',   label: 'Post-dinner walk with Kyle', cue: 'time to talk and connect', floor: false, type: 'walk' },
-    { id: 'walk_jog',      label: 'Walk-jog session (optional)', cue: 'when energy is good · only when it feels right', floor: false, type: 'walk_jog' },
-    { id: 'strength',      label: 'Light strength session complete', cue: 'all 5 moves below · short and gentle', floor: false, type: 'strength' }
+    { id: 'walk_morning',  label: 'Morning movement', cue: 'after coffee · gentle 5–10 min walk', type: 'walk' },
+    { id: 'walk_10am',     label: '10 AM break walk', cue: 'work break · just 10 min', type: 'walk' },
+    { id: 'walk_3pm',      label: '3 PM break walk', cue: 'work break · just 10 min', type: 'walk' },
+    { id: 'walk_dinner',   label: 'Post-dinner walk with Kyle', cue: 'time to talk and connect', type: 'walk' },
+    { id: 'walk_jog',      label: 'Walk-jog session (optional)', cue: 'when energy is good · only when it feels right', type: 'walk_jog' },
+    { id: 'strength',      label: 'Light strength session complete', cue: 'all 5 moves below · short and gentle', type: 'strength' }
   ]
 };
 

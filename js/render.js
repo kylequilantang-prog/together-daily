@@ -26,8 +26,9 @@ function isStrengthDayDate(d) {
   return dow === 1 || dow === 4;
 }
 function isFloorMet(person, dateStr) {
+  // Any walk-type check satisfies the 10-minute floor.
   const day = STATE[person][dateStr] || {};
-  return ITEMS[person].filter(i => i.floor).every(i => day[i.id]);
+  return ITEMS[person].some(i => (i.type === 'walk' || i.type === 'walk_jog') && day[i.id]);
 }
 function isFullDay(person, dateStr) {
   const day = STATE[person][dateStr] || {};
@@ -153,7 +154,6 @@ function renderPanel(person) {
           <span class="check-label">${escapeHTML(item.label)}</span>
           <span class="check-cue">${escapeHTML(item.cue)}</span>
         </span>
-        ${item.floor ? '<span class="check-bonus">floor</span>' : ''}
       </button>
     `;
   });
